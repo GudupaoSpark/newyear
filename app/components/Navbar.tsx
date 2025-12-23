@@ -60,6 +60,7 @@ export default function Navbar() {
         paddingRight: "1.25rem",
         backgroundColor: "var(--nav-bg-scrolled)",
         backdropFilter: "blur(24px)",
+        borderColor: "rgba(255, 255, 255, 0.1)",
         ease: "none",
       }, 0);
 
@@ -134,8 +135,7 @@ export default function Navbar() {
     const newDark = !isDark;
     setIsDark(newDark);
     
-    // Add a temporary class to handle the transition smoothly
-    document.documentElement.classList.add("theme-transitioning");
+
     
     if (newDark) {
       document.documentElement.classList.add("dark");
@@ -145,22 +145,19 @@ export default function Navbar() {
       localStorage.setItem("theme", "light");
     }
 
-    // Remove the class after the transition finishes
-    setTimeout(() => {
-      document.documentElement.classList.remove("theme-transitioning");
-    }, 500);
+
   };
 
   const toggleLang = () => setLang(l => l === "EN" ? "ZH" : "EN");
 
-  const menuItems = ["Showcase", "Solutions", "Innovation", "About"];
+  const menuItems = ["Features", "Showcase", "About"];
 
   return (
     <>
       <nav ref={navRef} className="fixed top-8 left-0 right-0 z-[100] flex justify-center px-6 pointer-events-none">
         <div
           ref={containerRef}
-          className="nav-container pointer-events-auto flex items-center justify-between w-full max-w-7xl h-16 px-4 md:px-8 rounded-full border border-white/20 backdrop-blur-2xl shadow-2xl shadow-black/5 dark:border-white/10"
+          className="nav-container pointer-events-auto flex items-center justify-between w-full max-w-7xl h-16 px-4 md:px-8 rounded-full border border-white/40 dark:border-white/10 bg-white/60 dark:bg-black/60 backdrop-blur-xl shadow-2xl shadow-red-500/5 hover:border-red-500/20 transition-colors duration-500"
         >
           {/* Logo Section */}
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
@@ -196,7 +193,7 @@ export default function Navbar() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-[13px] font-bold tracking-widest uppercase text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-all duration-300"
+                className="relative text-[13px] font-bold tracking-widest uppercase text-gray-600 hover:text-red-600 dark:text-gray-300 dark:hover:text-red-400 transition-colors duration-300"
               >
                 {item}
               </a>

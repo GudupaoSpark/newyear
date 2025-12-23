@@ -90,18 +90,24 @@ export default function Footer() {
     {
       title: "Contact Info",
       links: [
-        { text: "official@gudupao.top", icon: <Mail size={14} className="text-blue-500" />, href: "mailto:official@gudupao.top" },
-        { text: "Guangdong Province, Guangzhou, China", icon: <MapPin size={14} className="text-blue-500" /> }
+        { text: "official@gudupao.top", icon: <Mail size={14} className="text-red-500" />, href: "mailto:official@gudupao.top" },
+        { text: "Guangdong Province, Guangzhou, China", icon: <MapPin size={14} className="text-red-500" /> }
       ]
     }
   ];
 
   return (
-    <footer className="w-full bg-white dark:bg-zinc-950 border-t-2 border-zinc-100 dark:border-white/5 transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-6 py-8 md:py-12">
+    <footer className="w-full relative bg-white/80 dark:bg-zinc-950/80 border-t border-red-100 dark:border-white/5 transition-all duration-500 backdrop-blur-xl">
+      {/* Footer Glow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-16">
         
         {/* Top Section: Socials Only */}
-        <div className="flex items-center gap-2 flex-wrap mb-8">
+        <div className="flex items-center flex-wrap mb-12">
           {socialIcons.map((social, i) => (
             social.href ? (
               <a
@@ -109,30 +115,30 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-white/5 text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all duration-300"
+                className="p-2 mx-1 rounded-xl bg-zinc-50 dark:bg-white/5 border border-zinc-100 dark:border-white/5 hover:border-red-500/30 dark:hover:border-red-500/30 text-zinc-400 dark:text-zinc-500 hover:text-red-600 dark:hover:text-red-500 hover:shadow-lg hover:shadow-red-500/10 hover:-translate-y-0.5 transition-all duration-300"
                 aria-label={social.label}
               >
                 {social.icon}
               </a>
             ) : (
-              <div key={i} className="px-1 select-none">
-                {social.icon}
+              <div key={i} className="px-2 self-center">
+                <div className="w-[1.5px] h-6 bg-zinc-200 dark:bg-zinc-800"></div>
               </div>
             )
           ))}
         </div>
 
         {/* Main Content: Links & Big Logo */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 mb-8">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-12">
           {/* Links Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-0 flex-1 w-full max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 lg:gap-0 flex-1 w-full max-w-3xl">
             {/* Navigation Sections */}
             {footerSections.map((section, i) => (
-              <div key={i} className="flex flex-col gap-2">
-                <h4 className="text-base font-black text-zinc-900 dark:text-zinc-100 mb-0.5">
+              <div key={i} className="flex flex-col gap-4">
+                <h4 className="text-sm font-black tracking-widest uppercase text-red-900/40 dark:text-red-100/40 mb-2">
                   {section.title}
                 </h4>
-                <ul className="flex flex-col gap-0.5">
+                <ul className="flex flex-col gap-2">
                   {section.links.map((link, j) => (
                     <li key={j}>
                       {link.href ? (
@@ -140,14 +146,17 @@ export default function Footer() {
                           href={link.href}
                           target={link.href.startsWith('http') ? "_blank" : undefined}
                           rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                          className="flex items-center gap-3 text-base font-bold text-zinc-400 dark:text-zinc-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                          className="group flex items-center gap-3 text-base font-bold text-zinc-600 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300"
                         >
-                          {link.icon && <span className="opacity-60">{link.icon}</span>}
-                          <span>{link.text}</span>
+                          {link.icon && <span className="opacity-60 group-hover:text-red-500 transition-colors">{link.icon}</span>}
+                          <span className="relative">
+                            {link.text}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                          </span>
                         </a>
                       ) : (
-                        <div className="flex items-start gap-3 text-base font-bold text-zinc-400 dark:text-zinc-500">
-                          <span className="mt-1.5 opacity-60">{link.icon}</span>
+                        <div className="flex items-start gap-3 text-base font-bold text-zinc-500 dark:text-zinc-500">
+                          <span className="mt-1.5 opacity-60 text-red-500">{link.icon}</span>
                           <span className="leading-relaxed">{link.text}</span>
                         </div>
                       )}
@@ -163,23 +172,25 @@ export default function Footer() {
             <img 
               src={isDark ? logoDark : logoLight} 
               alt="Logo" 
-              className="h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-500 opacity-90 hover:opacity-100" 
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-500 opacity-80 hover:opacity-100 hover:scale-105 drop-shadow-2xl" 
             />
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 md:mt-12 pt-8 border-t border-zinc-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-base font-bold text-zinc-400 dark:text-zinc-600">
-            © {currentYear} Gudupao Spark Inc. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-red-100/50 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-sm font-bold text-zinc-400 dark:text-zinc-600 flex items-center gap-2">
+            <span>© {currentYear} Gudupao Spark Inc.</span>
+            <span className="w-1 h-1 rounded-full bg-red-500/40"></span>
+            <span>All rights reserved.</span>
           </p>
           
           <button
             onClick={toggleLang}
-            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-50 dark:bg-white/5 border border-zinc-100 dark:border-white/10 hover:bg-zinc-100 dark:hover:bg-white/10 transition-all duration-300 text-zinc-700 dark:text-zinc-300"
+            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-white/5 border border-red-100 dark:border-white/10 hover:border-red-200 dark:hover:border-white/20 hover:shadow-lg hover:shadow-red-500/5 transition-all duration-300 text-zinc-600 dark:text-zinc-300"
           >
-            <Languages size={16} className="group-hover:rotate-12 transition-transform" />
-            <span className="text-sm font-black tracking-tighter uppercase">{lang}</span>
+            <Languages size={16} className="group-hover:rotate-12 transition-transform text-red-500" />
+            <span className="text-xs font-black tracking-widest uppercase">{lang}</span>
           </button>
         </div>
       </div>
