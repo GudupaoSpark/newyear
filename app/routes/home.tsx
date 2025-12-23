@@ -73,6 +73,9 @@ export default function Home() {
           <div className="w-1 h-20 bg-gradient-to-b from-blue-500 to-transparent rounded-full"></div>
         </div>
       </section>
+
+      {/* Spacer to push content away from footer */}
+      <div className="h-24 md:h-40"></div>
     </div>
   );
 }
