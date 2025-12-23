@@ -5,11 +5,65 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  @media (prefers-color-scheme: dark) {
+@layer base {
+  :root {
+    --nav-bg: rgba(255, 255, 255, 0.4);
+    --nav-bg-scrolled: rgba(255, 255, 255, 0.6);
+    --background: #ffffff;
+    --foreground: #111827;
+  }
+
+  .dark {
+    --nav-bg: rgba(0, 0, 0, 0.4);
+    --nav-bg-scrolled: rgba(0, 0, 0, 0.6);
+    --background: #030712;
+    --foreground: #f9fafb;
+  }
+
+  html {
+    /* 核心：确保 html 也有背景色，防止 body 过渡时露出白底 */
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  
+  html.dark {
     color-scheme: dark;
   }
+
+  body {
+    @apply min-h-screen;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* 切换时的全局平滑过渡 */
+  html.theme-transitioning,
+  html.theme-transitioning body,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  *, ::before, ::after {
+    @apply border-gray-200 dark:border-white/10;
+  }
+
+  /* 针对图片和图标的特殊处理 */
+  img, svg {
+    transition: opacity 0.3s ease;
+  }
+}
+
+/* Navbar 特殊背景处理 */
+.nav-container {
+  background-color: var(--nav-bg);
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
