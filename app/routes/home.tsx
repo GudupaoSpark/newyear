@@ -163,9 +163,9 @@ export default function Home() {
           <div className="order-2 lg:order-1 relative">
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-[3rem] blur-3xl transform -rotate-6"></div>
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop" 
+              src="/home/team.jpg" 
               alt="Team" 
-              className="relative rounded-[3rem] shadow-2xl border-4 border-white dark:border-white/10 grayscale hover:grayscale-0 transition-all duration-700"
+              className="relative rounded-[3rem] shadow-2xl border-4 border-white dark:border-white/10 transition-all duration-700"
             />
           </div>
           <div className="order-1 lg:order-2">
