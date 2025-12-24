@@ -1,18 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sun, Moon, Languages, Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-// Import logos
-import logoLight from "../assets/logo/logo.png";
-import logoDark from "../assets/logo/logo-dark.png";
-import logoMobileLight from "../assets/logo/logo-mobile.png";
-import logoMobileDark from "../assets/logo/logo-mobile-dark.png";
+// Logo paths
+const logoLight = "/assets/logo/logo.webp";
+const logoDark = "/assets/logo/logo-dark.webp";
+const logoMobileLight = "/assets/logo/logo-mobile.webp";
+const logoMobileDark = "/assets/logo/logo-dark-mobile.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   // 1. Correctly initialize state from localStorage/system preference to avoid flash
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
@@ -23,7 +28,6 @@ export default function Navbar() {
     return false;
   });
 
-  const [lang, setLang] = useState("EN");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -148,9 +152,25 @@ export default function Navbar() {
 
   };
 
-  const toggleLang = () => setLang(l => l === "EN" ? "ZH" : "EN");
+  const toggleLang = () => {
+    const currentLang = i18n.language;
+    const nextLang = currentLang === "en" ? "zh" : "en";
+    
+    // Get current path without the language prefix
+    let pathname = location.pathname;
+    if (pathname.startsWith(`/${currentLang}`)) {
+      pathname = pathname.replace(`/${currentLang}`, "");
+    }
+    
+    // Navigate to the same path but with the new language prefix
+    navigate(`/${nextLang}${pathname}${location.search}${location.hash}`);
+  };
 
-  const menuItems = ["Features", "Showcase", "About"];
+  const menuItems = [
+    { id: "features", label: t("nav.features") },
+    { id: "showcase", label: t("nav.showcase") },
+    { id: "about", label: t("nav.about") },
+  ];
 
   return (
     <>
@@ -160,54 +180,64 @@ export default function Navbar() {
           className="nav-container pointer-events-auto flex items-center justify-between w-full max-w-7xl h-16 px-4 md:px-8 rounded-full border border-white/40 dark:border-white/10 bg-white/60 dark:bg-black/60 backdrop-blur-xl shadow-2xl shadow-red-500/5 hover:border-red-500/20 transition-colors duration-500"
         >
           {/* Logo Section */}
-          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
+          <div className="flex-1 flex justify-start">
+            <Link to={`/${i18n.language}`} className="flex items-center hover:opacity-80 transition-opacity duration-300">
             <div ref={logoMainRef} className="relative flex items-center shrink-0 h-7 w-24">
               <img 
-                src={logoLight} 
-                alt="Logo Light" 
-                className={`absolute left-0 top-0 h-7 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'}`} 
-              />
-              <img 
-                src={logoDark} 
-                alt="Logo Dark" 
-                className={`absolute left-0 top-0 h-7 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'}`} 
-              />
-            </div>
-            <div ref={logoMobileRef} className="hidden relative items-center shrink-0 h-8 w-8">
-              <img 
-                src={logoMobileLight} 
-                alt="Mobile Logo Light" 
-                className={`absolute left-0 top-0 h-8 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'}`} 
-              />
-              <img 
-                src={logoMobileDark} 
-                alt="Mobile Logo Dark" 
-                className={`absolute left-0 top-0 h-8 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'}`} 
-              />
+                 src={logoLight} 
+                 alt="Logo Light" 
+                 fetchPriority="high"
+                 decoding="async"
+                 className={`absolute left-0 top-0 h-7 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'}`} 
+               />
+               <img 
+                 src={logoDark} 
+                 alt="Logo Dark" 
+                 fetchPriority="high"
+                 decoding="async"
+                 className={`absolute left-0 top-0 h-7 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'}`} 
+               />
+             </div>
+             <div ref={logoMobileRef} className="hidden relative items-center shrink-0 h-8 w-8">
+               <img 
+                 src={logoMobileLight} 
+                 alt="Mobile Logo Light" 
+                 fetchPriority="high"
+                 decoding="async"
+                 className={`absolute left-0 top-0 h-8 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-0' : 'opacity-100'}`} 
+               />
+               <img 
+                 src={logoMobileDark} 
+                 alt="Mobile Logo Dark" 
+                 fetchPriority="high"
+                 decoding="async"
+                 className={`absolute left-0 top-0 h-8 w-auto object-contain transition-opacity duration-500 ${isDark ? 'opacity-100' : 'opacity-0'}`} 
+               />
             </div>
           </Link>
+          </div>
 
           {/* Desktop Navigation Menu */}
-          <div ref={menuRef} className="hidden lg:flex items-center gap-10 mx-auto">
+          <div ref={menuRef} className="hidden lg:flex items-center gap-10 flex-none">
             {menuItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.id}
+                href={`#${item.id}`}
                 className="relative text-[13px] font-bold tracking-widest uppercase text-gray-600 hover:text-red-600 dark:text-gray-300 dark:hover:text-red-400 transition-colors duration-300"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
 
           {/* Action Controls */}
-          <div className="flex items-center gap-1 md:gap-3 shrink-0">
+          <div className="flex-1 flex items-center justify-end gap-1 md:gap-3 shrink-0">
             <button
               onClick={toggleLang}
               className="group flex items-center gap-2 px-3 md:px-4 py-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 text-gray-700 dark:text-gray-300"
             >
               <Languages size={16} className="group-hover:rotate-12 transition-transform" />
-              <span className="text-xs font-black tracking-tighter">{lang}</span>
+              <span className="text-xs font-black tracking-tighter">{i18n.language.toUpperCase()}</span>
             </button>
             
             <button
@@ -236,13 +266,13 @@ export default function Navbar() {
         <div className="flex flex-col items-center gap-8">
           {menuItems.map((item, i) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.id}
+              href={`#${item.id}`}
               onClick={() => setIsMenuOpen(false)}
               className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 dark:text-white hover:text-blue-500 transition-colors duration-300"
               style={{ transitionDelay: `${i * 50}ms` }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>

@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "首页",
+    "features": "祝福",
+    "showcase": "展示",
+    "about": "关于"
+  },
+  "footer": {
+    "company": "公司",
+    "followUs": "关注我们",
+    "contactInfo": "联系方式",
+    "about": "关于我们",
+    "projects": "项目",
+    "contact": "联系我们",
+    "status": "服务状态",
+    "x": "X (Twitter)",
+    "github": "GitHub",
+    "youtube": "YouTube",
+    "bilibili": "Bilibili",
+    "qqGroup": "QQ 群",
+    "discord": "Discord",
+    "address": "中国 广东省 广州市"
+  },
+  "welcome": {
+    "title": "React Router 欢迎使用",
+    "next": "接下来做什么？",
+    "docs": "React Router 文档",
+    "discord": "加入 Discord"
+  },
+  "error": {
+    "oops": "哎呀！",
+    "unexpected": "发生了一个意外错误。",
+    "notFound": "找不到请求的页面。",
+    "status": "错误"
+  },
+  "home": {
+    "meta": {
+      "title": "2026 丙午马年 - Gudupao Spark 官方新年单页",
+      "description": "Gudupao Spark 2026 马年中国新年官方庆祝单页，龙腾盛世，马到成功。"
+    },
+    "hero": {
+      "badge": "2026 丙午马年",
+      "title_1": "马到成功",
+      "title_2": "龙腾盛世.",
+      "subtitle": "Gudupao Spark 祝您在 2026 丙午马年里：",
+      "highlight": "一马当先",
+      "subtitle_suffix": "，万事顺遂，创意如泉涌，梦想皆成真。",
+      "cta_primary": "开启新年好运",
+      "cta_secondary": "查看年度回顾"
+    },
+    "features": {
+      "badge": "祝福",
+      "title_main": "新年",
+      "title_highlight": "祝福",
+      "title_suffix": "语",
+      "description": "祝您在新的一年里，身体健康，万事如意，阖家幸福，财源广进！",
+      "items": {
+        "happy_new_year": {
+          "title": "新年快乐",
+          "desc": "祝您新年快乐，万事如意，心想事成！"
+        },
+        "health": {
+          "title": "身体健康",
+          "desc": "祝您身体健康，龙马精神，活力充沛！"
+        },
+        "family": {
+          "title": "阖家幸福",
+          "desc": "祝您家庭和睦，幸福美满，团团圆圆！"
+        },
+        "wealth": {
+          "title": "财源广进",
+          "desc": "祝您财源广进，事业顺利，步步高升！"
+        },
+        "study": {
+          "title": "学业有成",
+          "desc": "祝您学业有成，金榜题名，前程似锦！"
+        },
+        "work": {
+          "title": "工作顺利",
+          "desc": "祝您工作顺利，事业有成，宏图大展！"
+        }
+      }
+    },
+    "showcase": {
+      "badge": "展示",
+      "title_main": "团队",
+      "title_highlight": "高光",
+      "title_suffix": "时刻",
+      "description": "回顾过去一年的精彩瞬间，展望未来的无限可能。每一个项目都是我们来时的脚印。",
+      "projects": {
+        "featured": "精选项目",
+        "open_source": {
+          "title": "开源项目集",
+          "desc": "在这一年内我们做了许多有用的开源项目"
+        },
+        "suggestions": {
+          "title": "2026年发展建议征集活动",
+          "desc": "2026.01.31 - 广州"
+        },
+        "newyear": {
+          "title": "共同跨年",
+          "desc": "喜迎新春"
+        }
+      }
+    },
+    "about": {
+      "badge": "关于我们",
+      "title_main": "一群",
+      "title_highlight": "追逐光",
+      "title_suffix": "的人",
+      "description": "Gudupao Spark 成立于 2023年1月31日，我们想打造一个温暖的工作氛围，让每一个人都能勇敢的追逐自己的梦！",
+      "stats": {
+        "members": "成员",
+        "projects": "项目"
+      }
+    },
+    "bottom": "祝您马年大吉 · 万事如意"
+  }
+}

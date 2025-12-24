@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Blessings",
+    "showcase": "Showcase",
+    "about": "About"
+  },
+  "footer": {
+    "company": "Company",
+    "followUs": "Follow Us",
+    "contactInfo": "Contact Info",
+    "about": "About Us",
+    "projects": "Projects",
+    "contact": "Contact Us",
+    "status": "Status",
+    "x": "X (Twitter)",
+    "github": "GitHub",
+    "youtube": "YouTube",
+    "bilibili": "Bilibili",
+    "qqGroup": "QQ Group",
+    "discord": "Discord",
+    "address": "Guangdong Province, Guangzhou, China"
+  },
+  "welcome": {
+    "title": "React Router Welcome",
+    "next": "What's next?",
+    "docs": "React Router Docs",
+    "discord": "Join Discord"
+  },
+  "error": {
+    "oops": "Oops!",
+    "unexpected": "An unexpected error occurred.",
+    "notFound": "The requested page could not be found.",
+    "status": "Error"
+  },
+  "home": {
+    "meta": {
+      "title": "2026 Year of the Horse - Gudupao Spark Official New Year Page",
+      "description": "Gudupao Spark 2026 Year of the Horse Chinese New Year Official Celebration Page. Prosperity and success."
+    },
+    "hero": {
+      "badge": "2026 Year of the Horse",
+      "title_1": "Success in the",
+      "title_2": "New Year.",
+      "subtitle": "Gudupao Spark wishes you in the 2026 Year of the Horse:",
+      "highlight": "Leading the way",
+      "subtitle_suffix": ", everything goes smoothly, creativity flows, and dreams come true.",
+      "cta_primary": "Start New Year Luck",
+      "cta_secondary": "Year in Review"
+    },
+    "features": {
+      "badge": "Blessings",
+      "title_main": "New Year ",
+      "title_highlight": "Blessings",
+      "title_suffix": "",
+      "description": "Wishing you health, prosperity, family happiness, and great success in the new year!",
+      "items": {
+        "happy_new_year": {
+          "title": "Happy New Year",
+          "desc": "Wishing you a happy new year and all your wishes come true!"
+        },
+        "health": {
+          "title": "Health",
+          "desc": "Wishing you good health, high spirits, and vitality!"
+        },
+        "family": {
+          "title": "Family Happiness",
+          "desc": "Wishing your family harmony, happiness, and togetherness!"
+        },
+        "wealth": {
+          "title": "Prosperity",
+          "desc": "Wishing you prosperity, smooth career, and continuous promotion!"
+        },
+        "study": {
+          "title": "Academic Success",
+          "desc": "Wishing you success in your studies and a bright future!"
+        },
+        "work": {
+          "title": "Smooth Work",
+          "desc": "Wishing you smooth work, career success, and great achievements!"
+        }
+      }
+    },
+    "showcase": {
+      "badge": "Showcase",
+      "title_main": "Team ",
+      "title_highlight": "Highlights",
+      "title_suffix": "",
+      "description": "Reviewing the wonderful moments of the past year and looking forward to the infinite possibilities of the future.",
+      "projects": {
+        "featured": "Featured Project",
+        "open_source": {
+          "title": "Open Source Projects",
+          "desc": "We have created many useful open source projects this year."
+        },
+        "suggestions": {
+          "title": "2026 Development Suggestions",
+          "desc": "2026.01.31 - Guangzhou"
+        },
+        "newyear": {
+          "title": "New Year Celebration",
+          "desc": "Welcome the Spring Festival"
+        }
+      }
+    },
+    "about": {
+      "badge": "About Us",
+      "title_main": "A Group of ",
+      "title_highlight": "Light Chasers",
+      "title_suffix": "",
+      "description": "Gudupao Spark was founded on January 31, 2023. We want to create a warm working atmosphere where everyone can bravely pursue their dreams!",
+      "stats": {
+        "members": "Members",
+        "projects": "Projects"
+      }
+    },
+    "bottom": "Happy Year of the Horse · All the Best"
+  }
+}

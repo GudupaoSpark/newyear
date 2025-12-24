@@ -5,18 +5,45 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useParams,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import "./i18n/config";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { useTranslation } from "react-i18next";
+import { useEffect, lazy, Suspense } from "react";
 
-export const links: Route.LinksFunction = () => [];
+const Footer = lazy(() => import("./components/Footer"));
+
+export const links: Route.LinksFunction = () => [
+  { rel: "preconnect", href: "https://simpleicons.org" },
+  { rel: "dns-prefetch", href: "https://simpleicons.org" },
+  { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+  {
+    rel: "preload",
+    href: "/fonts/PlusJakartaSans-Variable.ttf",
+    as: "font",
+    type: "font/ttf",
+    crossOrigin: "anonymous",
+  },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { i18n } = useTranslation();
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.lang && (params.lang === "zh" || params.lang === "en")) {
+      if (i18n.language !== params.lang) {
+        i18n.changeLanguage(params.lang);
+      }
+    }
+  }, [params.lang, i18n]);
+  
   return (
-    <html lang="en">
+    <html lang={i18n.language}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,7 +68,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className="antialiased">
         <Navbar />
         {children}
-        <Footer />
+        <Suspense fallback={<div className="h-20" />}>
+          <Footer />
+        </Suspense>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -54,15 +83,16 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
+  const { t } = useTranslation();
+  let message = t("error.oops");
+  let details = t("error.unexpected");
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? "404" : t("error.status");
     details =
       error.status === 404
-        ? "The requested page could not be found."
+        ? t("error.notFound")
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
