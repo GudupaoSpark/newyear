@@ -87,6 +87,17 @@ export default function App() {
   return <Outlet />;
 }
 
+export function HydrateFallback() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-white dark:bg-black">
+      <div className="relative w-24 h-24">
+        <div className="absolute inset-0 border-4 border-red-500/20 rounded-full"></div>
+        <div className="absolute inset-0 border-4 border-red-600 rounded-full border-t-transparent animate-spin"></div>
+      </div>
+    </div>
+  );
+}
+
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const { t } = useTranslation();
   let message = t("error.oops");
