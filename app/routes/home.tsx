@@ -2,6 +2,11 @@ import type { Route } from "./+types/home";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n/config";
 
+import projectsImg from "../assets/home/projects.webp";
+import huodongImg from "../assets/home/huodong.webp";
+import newyearImg from "../assets/home/newyear.webp";
+import teamImg from "../assets/home/team.webp";
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: i18n.t("home.meta.title") },
@@ -127,7 +132,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-gray-100 dark:bg-zinc-800">
              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-             <img src="/home/projects.webp" alt="Showcase 1" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+             <img src={projectsImg} alt="Showcase 1" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
              <div className="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 block">{t("home.showcase.projects.featured")}</span>
                 <h3 className="text-2xl font-black text-white mb-2">{t("home.showcase.projects.open_source.title")}</h3>
@@ -137,7 +142,7 @@ export default function Home() {
           <div className="flex flex-col gap-8">
             <div className="group relative flex-1 rounded-[2rem] overflow-hidden bg-gray-100 dark:bg-zinc-800 min-h-[200px]">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-              <img src="/home/huodong.webp" alt="Showcase 2" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src={huodongImg} alt="Showcase 2" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute bottom-0 left-0 p-8 z-20">
                 <h3 className="text-xl font-black text-white mb-1">{t("home.showcase.projects.suggestions.title")}</h3>
                 <p className="text-white/80 text-xs">{t("home.showcase.projects.suggestions.desc")}</p>
@@ -145,7 +150,7 @@ export default function Home() {
             </div>
             <div className="group relative flex-1 rounded-[2rem] overflow-hidden bg-gray-100 dark:bg-zinc-800 min-h-[200px]">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-              <img src="/home/newyear.webp" alt="Showcase 3" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src={newyearImg} alt="Showcase 3" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute bottom-0 left-0 p-8 z-20">
                 <h3 className="text-xl font-black text-white mb-1">{t("home.showcase.projects.newyear.title")}</h3>
                 <p className="text-white/80 text-xs">{t("home.showcase.projects.newyear.desc")}</p>
@@ -163,7 +168,7 @@ export default function Home() {
           <div className="order-2 lg:order-1 relative">
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-[3rem] blur-3xl transform -rotate-6"></div>
             <img 
-              src="/home/team.webp" 
+              src={teamImg} 
               alt="Team" 
               loading="lazy"
               decoding="async"

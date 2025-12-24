@@ -14,20 +14,14 @@ import "./i18n/config";
 import Navbar from "./components/Navbar";
 import { useTranslation } from "react-i18next";
 import { useEffect, lazy, Suspense } from "react";
+import favicon from "./assets/favicon.ico";
 
 const Footer = lazy(() => import("./components/Footer"));
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://simpleicons.org" },
   { rel: "dns-prefetch", href: "https://simpleicons.org" },
-  { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-  {
-    rel: "preload",
-    href: "/fonts/PlusJakartaSans-Variable.ttf",
-    as: "font",
-    type: "font/ttf",
-    crossOrigin: "anonymous",
-  },
+  { rel: "icon", type: "image/x-icon", href: favicon },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

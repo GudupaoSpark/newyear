@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
 // Logo paths
-const logoLight = "/assets/logo/logo.webp";
-const logoDark = "/assets/logo/logo-dark.webp";
+import logoLight from "../assets/logo/logo.webp";
+import logoDark from "../assets/logo/logo-dark.webp";
 
 export default function Footer() {
   const { t, i18n } = useTranslation();

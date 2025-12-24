@@ -6,10 +6,10 @@ import { Sun, Moon, Languages, Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 // Logo paths
-const logoLight = "/assets/logo/logo.webp";
-const logoDark = "/assets/logo/logo-dark.webp";
-const logoMobileLight = "/assets/logo/logo-mobile.webp";
-const logoMobileDark = "/assets/logo/logo-dark-mobile.webp";
+import logoLight from "../assets/logo/logo.webp";
+import logoDark from "../assets/logo/logo-dark.webp";
+import logoMobileLight from "../assets/logo/logo-mobile.webp";
+import logoMobileDark from "../assets/logo/logo-dark-mobile.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
