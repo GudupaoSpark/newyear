@@ -153,17 +153,24 @@ export default function Navbar() {
   };
 
   const toggleLang = () => {
-    const currentLang = i18n.language;
+    // 规范化当前语言，确保它是 zh 或 en
+    const currentLang = i18n.language.split('-')[0];
     const nextLang = currentLang === "en" ? "zh" : "en";
     
     // Get current path without the language prefix
     let pathname = location.pathname;
-    if (pathname.startsWith(`/${currentLang}`)) {
-      pathname = pathname.replace(`/${currentLang}`, "");
+    // 移除路径中的语言前缀（无论是 en、zh 还是 en-US 等）
+    const pathParts = pathname.split('/');
+    if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'zh' || pathParts[1].includes('-'))) {
+      pathParts.splice(1, 1);
+      pathname = pathParts.join('/') || '/';
     }
     
+    // Ensure pathname doesn't result in double slashes
+    const cleanPathname = pathname.startsWith('/') ? pathname : `/${pathname}`;
+    
     // Navigate to the same path but with the new language prefix
-    navigate(`/${nextLang}${pathname}${location.search}${location.hash}`);
+    navigate(`/${nextLang}${cleanPathname === '/' ? '' : cleanPathname}${location.search}${location.hash}`);
   };
 
   const menuItems = [

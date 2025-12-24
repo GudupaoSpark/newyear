@@ -18,6 +18,8 @@ i18n
       },
     },
     fallbackLng: 'zh',
+    supportedLngs: ['zh', 'en'],
+    load: 'languageOnly',
     interpolation: {
       escapeValue: false, // react already safes from xss
     },

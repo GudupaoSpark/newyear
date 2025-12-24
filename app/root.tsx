@@ -35,9 +35,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const params = useParams();
 
   useEffect(() => {
-    if (params.lang && (params.lang === "zh" || params.lang === "en")) {
-      if (i18n.language !== params.lang) {
-        i18n.changeLanguage(params.lang);
+    if (params.lang) {
+      // 规范化语言代码，例如 en-US -> en
+      const normalizedLang = params.lang.split('-')[0];
+      
+      if (normalizedLang === "zh" || normalizedLang === "en") {
+        if (i18n.language !== normalizedLang) {
+          i18n.changeLanguage(normalizedLang);
+        }
+      } else {
+        // 如果 URL 中的语言不支持，可以考虑重定向到默认语言
+        // 或者至少不更新 i18n 语言
       }
     }
   }, [params.lang, i18n]);
