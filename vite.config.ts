@@ -22,6 +22,7 @@ export default defineConfig(({ isSsrBuild }) => ({
     include: ['react', 'react-dom', 'react-router', 'gsap', 'gsap/ScrollTrigger', 'lucide-react', 'i18next', 'react-i18next'],
   },
   build: {
+    outDir: "build",
     target: 'esnext',
     cssMinify: true,
     sourcemap: false,
