@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@react-router/express':
-        specifier: 7.11.0
+        specifier: ^7.11.0
         version: 7.11.0(express@5.2.1)(react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
       '@react-router/node':
-        specifier: 7.11.0
+        specifier: ^7.11.0
         version: 7.11.0(react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
       '@react-router/serve':
-        specifier: 7.11.0
+        specifier: ^7.11.0
         version: 7.11.0(react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
       compression:
         specifier: ^1.8.1
@@ -48,11 +48,11 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0(i18next@25.7.3(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
       react-router:
-        specifier: 7.11.0
+        specifier: ^7.11.0
         version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     devDependencies:
       '@react-router/dev':
-        specifier: 7.11.0
+        specifier: ^7.11.0
         version: 7.11.0(@react-router/serve@7.11.0(react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3))(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2))
       '@tailwindcss/vite':
         specifier: ^4.1.13
