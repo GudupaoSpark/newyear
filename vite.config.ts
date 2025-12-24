@@ -18,6 +18,11 @@ export default defineConfig(({ isSsrBuild }) => ({
       ext: '.br',
     }),
   ],
+  server: {
+    headers: {
+      'Cache-Control': 'no-store',
+    },
+  },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router', 'gsap', 'gsap/ScrollTrigger', 'lucide-react', 'i18next', 'react-i18next'],
   },

@@ -25,7 +25,7 @@ i18n
     },
     detection: {
       order: ['path', 'querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag', 'subdomain'],
-      caches: ['localStorage', 'cookie'],
+      caches: [],
       lookupFromPathIndex: 0,
     },
   });
