@@ -27,6 +27,9 @@ export const links: Route.LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation();
   const params = useParams();
+  
+  // Normalize language for attributes to avoid hydration mismatch (e.g., en-US vs en)
+  const currentLang = i18n.language?.split('-')[0] || "zh";
 
   useEffect(() => {
     if (params.lang) {
@@ -37,15 +40,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         if (i18n.language !== normalizedLang) {
           i18n.changeLanguage(normalizedLang);
         }
-      } else {
-        // 如果 URL 中的语言不支持，可以考虑重定向到默认语言
-        // 或者至少不更新 i18n 语言
       }
     }
   }, [params.lang, i18n]);
   
   return (
-    <html lang={i18n.language}>
+    <html lang={currentLang} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

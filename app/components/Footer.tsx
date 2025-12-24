@@ -13,6 +13,9 @@ export default function Footer() {
   const navigate = useNavigate();
   const isWelcome = location.pathname.endsWith("/welcome");
   const [isDark, setIsDark] = useState(false);
+  
+  // Normalize language for display and links to avoid hydration mismatch
+  const displayLang = i18n.language?.split('-')[0] || "zh";
 
   useEffect(() => {
     // Check dark mode status whenever it changes on the document
@@ -33,17 +36,24 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const toggleLang = () => {
-    const currentLang = i18n.language;
+    // 规范化当前语言，确保它是 zh 或 en
+    const currentLang = i18n.language.split('-')[0];
     const nextLang = currentLang === "en" ? "zh" : "en";
     
     // Get current path without the language prefix
     let pathname = location.pathname;
-    if (pathname.startsWith(`/${currentLang}`)) {
-      pathname = pathname.replace(`/${currentLang}`, "");
+    // 移除路径中的语言前缀（无论是 en、zh 还是 en-US 等）
+    const pathParts = pathname.split('/');
+    if (pathParts.length > 1 && (pathParts[1] === 'en' || pathParts[1] === 'zh' || pathParts[1].includes('-'))) {
+      pathParts.splice(1, 1);
+      pathname = pathParts.join('/') || '/';
     }
     
+    // Ensure pathname doesn't result in double slashes
+    const cleanPathname = pathname.startsWith('/') ? pathname : `/${pathname}`;
+    
     // Navigate to the same path but with the new language prefix
-    navigate(`/${nextLang}${pathname}${location.search}${location.hash}`);
+    navigate(`/${nextLang}${cleanPathname === '/' ? '' : cleanPathname}${location.search}${location.hash}`);
   };
 
   const socialIcons = [
@@ -214,7 +224,7 @@ export default function Footer() {
             className="group flex items-center gap-2 px-6 md:px-4 py-3 md:py-2 rounded-full bg-white dark:bg-white/5 border border-red-100 dark:border-white/10 hover:border-red-200 dark:hover:border-white/20 hover:shadow-lg hover:shadow-red-500/5 active:scale-95 transition-all duration-300 text-zinc-600 dark:text-zinc-300"
           >
             <Languages size={16} className="group-hover:rotate-12 transition-transform text-red-500" />
-            <span className="text-xs font-black tracking-widest uppercase">{i18n.language.toUpperCase()}</span>
+            <span className="text-xs font-black tracking-widest uppercase">{displayLang.toUpperCase()}</span>
           </button>
         </div>
       </div>

@@ -18,6 +18,9 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   
+  // Normalize language for display and links to avoid hydration mismatch
+  const displayLang = i18n.language?.split('-')[0] || "zh";
+  
   // 1. Correctly initialize state from localStorage/system preference to avoid flash
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
@@ -188,7 +191,7 @@ export default function Navbar() {
         >
           {/* Logo Section */}
           <div className="flex-1 flex justify-start">
-            <Link to={`/${i18n.language}`} className="flex items-center hover:opacity-80 transition-opacity duration-300">
+            <Link to={`/${displayLang}`} className="flex items-center hover:opacity-80 transition-opacity duration-300">
             <div ref={logoMainRef} className="relative flex items-center shrink-0 h-7 w-24">
               <img 
                  src={logoLight} 
@@ -244,7 +247,7 @@ export default function Navbar() {
               className="group flex items-center gap-2 px-3 md:px-4 py-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 text-gray-700 dark:text-gray-300"
             >
               <Languages size={16} className="group-hover:rotate-12 transition-transform" />
-              <span className="text-xs font-black tracking-tighter">{i18n.language.toUpperCase()}</span>
+              <span className="text-xs font-black tracking-tighter">{displayLang.toUpperCase()}</span>
             </button>
             
             <button
